@@ -21,7 +21,7 @@ export function images() {
 			optimizationLevel: 3,
 		}))
 		.pipe(app.gulp.dest(app.path.build.img))
-		.pipe(app.gulp.src(app.path.src.svg, { encoding: false }))
+		.pipe(app.gulp.src(app.path.src.svg, { encoding: false })) // Почему-то выдаёт ошибку если в ресурсах нет ни одной svg
 		.pipe(app.gulp.dest(app.path.build.img))
 		.pipe(app.plugins.browserSync.stream());
 }

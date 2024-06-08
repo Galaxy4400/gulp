@@ -8,7 +8,7 @@ import { server } from "./gulp/tasks/server.js";
 import { scss } from "./gulp/tasks/scss.js";
 import { js } from "./gulp/tasks/js.js";
 import { images } from "./gulp/tasks/images.js";
-// import { ttfToWoff } from "./gulp/tasks/fonts.js";
+import { fonts } from "./gulp/tasks/fonts.js";
 
 global.app = {
 	isBuild: process.argv.includes('--build'),
@@ -26,10 +26,10 @@ function watcher() {
 	gulp.watch(path.watch.img, images);
 }
 
-const mainTasks = gulp.parallel(copy, html, scss, js, images);
-const processesTasks = gulp.parallel(watcher, server);
+const mainTasks = gulp.parallel(copy, html, scss, js, images, fonts);
+const serviceTasks = gulp.parallel(watcher, server);
 
-const dev = gulp.series(reset, mainTasks, processesTasks);
+const dev = gulp.series(reset, mainTasks, serviceTasks);
 const build = gulp.series(reset, mainTasks);
 
 export { dev };
